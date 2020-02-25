@@ -77,7 +77,7 @@
         </nav>
         <div class="container">
             <div class="row py-4">
-                <div class="col-md-3 mb-4">
+                <div class="col col-lg-3 mb-3">
                             <div class="list-group">
                                 <a href="" class="list-group-item list-group-item-action">home</a>    
                             <a href="{{ route('services.index') }}" class="list-group-item list-group-item-action">services</a>    
@@ -87,7 +87,7 @@
 
                             </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col">
                     @yield('content')
                 </div>
             </div>
