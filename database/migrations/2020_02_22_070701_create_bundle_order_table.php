@@ -20,6 +20,8 @@ class CreateBundleOrderTable extends Migration
             $table->foreign('bundle_id')->references('id')->on('bundles');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -22,6 +22,8 @@ class CreateOrdersTable extends Migration
             $table->string('response')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

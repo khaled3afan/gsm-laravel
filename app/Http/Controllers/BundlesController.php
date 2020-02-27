@@ -15,7 +15,11 @@ class BundlesController extends Controller
      */
     public function index()
     {
-        return view('bundles.index',['codes' => Bundle::all()]);
+        $bundles = Bundle::all();
+        // foreach($bundles as $bundle){
+        //     dd($bundle->service);
+        // }
+        return view('bundles.index',['bundles' => Bundle::all()]);
     }
 
     /**

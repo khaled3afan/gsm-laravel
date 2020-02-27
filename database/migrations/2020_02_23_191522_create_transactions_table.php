@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('info')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

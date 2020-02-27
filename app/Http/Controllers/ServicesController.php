@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -112,7 +113,14 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        $service->delete();
+        $bundles= $service->bundles;
+        DB::transaction(function () use($service, $bundles) {
+            foreach ($bundles as $bundle) {
+                $bundle->delete();
+            }
+            $service->delete();
+        });
+
         return redirect()->route('services.index');
     }
 

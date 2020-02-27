@@ -20,6 +20,8 @@ class CreateBundlesTable extends Migration
             $table->integer('service_id');
             $table->integer('bundletype_id');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

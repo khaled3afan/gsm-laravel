@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Order;
 use App\Service;
 use App\ServiceCode;
@@ -10,6 +11,7 @@ use App\ServiceType;
 
 class Bundle extends Model
 {
+    use softDeletes;
     protected $fillable= [
         'name',
         'price',

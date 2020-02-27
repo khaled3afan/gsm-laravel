@@ -18,6 +18,7 @@ class CreateWalletsTable extends Migration
             $table->integer('user_id');
             $table->float('balance', 8, 3);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

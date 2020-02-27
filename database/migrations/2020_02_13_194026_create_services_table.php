@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration
             $table->float('real_price', 8, 3)->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

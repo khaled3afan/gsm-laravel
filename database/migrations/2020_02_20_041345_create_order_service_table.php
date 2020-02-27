@@ -20,6 +20,8 @@ class CreateOrderServiceTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('service_id')->references('id')->on('services');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

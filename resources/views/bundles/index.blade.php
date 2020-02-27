@@ -7,23 +7,23 @@
             <table class="table table-bordered">
                 <thead class="bg-primary text-white">
                     <tr class="text-center">
-                        <th scope="col">code</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Bondle Name</th>
+                        <th scope="col">Price</th>
                         <th scope="col">service</th>
                         <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($codes as $code)
+                    @foreach ($bundles as $bundle)
                     <tr>
                         <td>
-                            {{ $code->name }}
+                            {{ $bundle->name }}
                         </td>
                         <td>
-                            not used
+                            {{ $bundle->price }}
                         </td>
                         <td>
-                            {{ $code->service->title }}
+                            {{ $bundle->service->title }}
                         </td>
                         <td>
                             actions

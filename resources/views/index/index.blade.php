@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <div class="row">
-                <div class="col-6">
+                <div class="col-8">
                     <div id="carouselExampleIndicators" class="carousel slide p-0 mb-3" data-ride="carousel">
                         <ol class="carousel-indicators">
                             @for ($i = 1; $i < 5; $i++)
@@ -29,13 +29,13 @@
                                 @endphp
                             @endforeach
                         </div>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                        </a>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                         </a>
                     </div>
                 </div>
@@ -63,8 +63,9 @@
                                                 </p>
                                             </div>
                                             <div class="card-footer">
-                                                <span class="badge badge-warning p-2">${{ number_format($service->price, 2) }}</span>
-                                                <a href="{{ route('index.service.show', $service->id) }}" class="btn btn-primary float-left mx-0 font-weight-bold">شراء</a>
+                                                <a href="{{ route('index.service.show', $service->id) }}" class="btn btn-primary mx-0 font-weight-bold">buy now</a>
+                                                <span class="badge badge-warning p-2 float-right mt-2">${{ number_format($service->price, 2) }}</span>
+
                                             </div>
                                             </div>
                                         </div>

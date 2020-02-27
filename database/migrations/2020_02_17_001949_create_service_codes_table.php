@@ -21,6 +21,8 @@ class CreateServiceCodesTable extends Migration
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->integer('user_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
