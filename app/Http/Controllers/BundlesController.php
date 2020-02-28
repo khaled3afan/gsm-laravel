@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Bundle;
@@ -54,7 +55,9 @@ class BundlesController extends Controller
      */
     public function show($id)
     {
-        //
+        $bundle = Bundle::find($id);
+
+        return view('bundles.show', ['bundle' => $bundle]);
     }
 
     /**
@@ -88,6 +91,15 @@ class BundlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bundle = Bundle::find($id);
+        DB::transaction(function () use ($bundle) {
+                if($bundle->bundle_codes->count()){
+                    foreach ($bundle->bundle_codes as $code) {
+                        $code->delete();
+                    }
+                }
+                $bundle->delete();   
+        });
+        return redirect()->route('bundles.index');
     }
 }

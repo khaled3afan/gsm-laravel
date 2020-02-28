@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Service;
 use App\ServiceCode;
-
+use App\Bundle;
 class ServiceCodesController extends Controller
 {
     /**
@@ -38,6 +37,15 @@ class ServiceCodesController extends Controller
  
     }
 
+    public function create_codes_by_bundle($bundle_id)
+    {
+        $bundle = Bundle::find($bundle_id);
+        if($bundle) {
+            return view('servicecodes.create')->with('bundle', $bundle);
+        }
+    }
+
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -56,6 +64,7 @@ class ServiceCodesController extends Controller
             'bundle_id'  => $bundle_id
         ]);
         endforeach;
+        return redirect()->route('servicecodes.index');
     }
 
     /**

@@ -79,17 +79,27 @@
             <div class="row py-4">
                 <div class="col col-lg-3 mb-3">
                             <div class="list-group">
-                                <a href="" class="list-group-item list-group-item-action">home</a>    
+                                <a href="{{ route('home') }}" class="list-group-item list-group-item-action">home</a>    
                             <a href="{{ route('services.index') }}" class="list-group-item list-group-item-action">services</a>    
                                 <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action">categories</a>    
                                 <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action">users</a>    
                                 <a href="{{ route('servicecodes.index') }}" class="list-group-item list-group-item-action">service codes</a>  
-                                <a href="{{ route('bundles.index') }}" class="list-group-item list-group-item-action">Bunles List</a>    
+                                <a href="{{ route('bundles.index') }}" class="list-group-item list-group-item-action">Bundles List</a>    
 
 
                             </div>
                 </div>
                 <div class="col">
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
                     @yield('content')
                 </div>
             </div>

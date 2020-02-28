@@ -30,7 +30,7 @@
                             <th scope="row">{{ $counter }}</th>
                             <td class="title">{{ $service->title }}</td>
                             <td class="description">{{ $service->description }}</td>
-                            <td class="text-nowrap text-center">
+                            <td class=" text-center">
                                 @if (isset($service->servicetype) && $service->servicetype->name=='instant')
                                 <a href="{{ route('servicecodes.create', $service->id) }}" class="btn btn-success  m-1"> <i class="fas fa-gift"></i></a>
                                 @endif

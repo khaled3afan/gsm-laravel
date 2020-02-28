@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
 
@@ -10,7 +10,7 @@
                         <th scope="col">code</th>
                         <th scope="col">Status</th>
                         <th scope="col">service</th>
-                        <th scope="col">action</th>
+                        <th scope="col">Bundle Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,10 +27,14 @@
                             @endif
                         </td>
                         <td>
-                            {{ $code->service->title }}
+                            @if ($code->service_id)
+                                {{ $code->service->title }}
+                            @else
+                                {{ $code->bundle->service->title }}
+                            @endif
                         </td>
                         <td>
-                            {{ $code->bundle->name }}
+                            {{ isset($code->bundle_id) ? $code->bundle->name : 'no bundle set' }}
                         </td>
                     </tr>
                     @endforeach

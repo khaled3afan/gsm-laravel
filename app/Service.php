@@ -28,7 +28,7 @@ class Service extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function servicecodes() {
+    public function service_codes() {
         return $this->hasMany(ServiceCode::class);
     }
     public function servicetype() {

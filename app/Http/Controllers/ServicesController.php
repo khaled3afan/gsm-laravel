@@ -115,16 +115,28 @@ class ServicesController extends Controller
     {
         $bundles= $service->bundles;
         DB::transaction(function () use($service, $bundles) {
-            foreach ($bundles as $bundle) {
-                $bundle->delete();
+            if($bundles->count()){
+                foreach ($bundles as $bundle) {
+                    if($bundle->bundle_codes->count()){
+                        foreach ($bundle->bundle_codes as $code) {
+                            $code->delete();
+                        }
+                    }
+                    $bundle->delete();
+                }
             }
+            if ($service->service_codes->count()) {
+                foreach($service->service_codes as $code) {
+                    $code->delete();
+                }
+            }   
             $service->delete();
         });
 
         return redirect()->route('services.index');
     }
 
-    public function serviceType($type) {
+    public function serviceType($type) { //display services by type in services.index depending on services/type/{type} route
         $services = Service::whereHas('servicetype', function(Builder $query) use ($type) {
             $query->where('name', '=', $type);
         })->get();

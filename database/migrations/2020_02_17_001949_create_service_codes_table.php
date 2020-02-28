@@ -16,7 +16,7 @@ class CreateServiceCodesTable extends Migration
         Schema::create('service_codes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
-            $table->integer('service_id');
+            $table->integer('service_id')->nullable();
             $table->integer('bundle_id')->nullable();
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->integer('user_id')->nullable();

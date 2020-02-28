@@ -27,8 +27,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('admin/users', 'UsersController');
     Route::resource('admin/servicecodes', 'ServiceCodesController')->except(['create']);
     Route::get('admin/servicecodes/create/{service}', 'ServiceCodesController@create')->name('servicecodes.create');
+    Route::get('admin/bundlecodes/{bundle}/create', 'ServiceCodesController@create_codes_by_bundle')->name('bundlecodes.create');
     Route::get('admin/services/type/{type}', 'ServicesController@serviceType');
     Route::get('admin/bundles', 'BundlesController@index')->name('bundles.index');
+    Route::get('admin/bundles/{bundle}', 'BundlesController@show')->name('bundles.show');
+    Route::delete('admin/bundles/{bundle}', 'BundlesController@destroy')->name('bundles.destroy');
     Route::get('admin/bundles/{service}/create', 'BundlesController@create')->name('bundles.create');
     Route::post('admin/bundles/', 'BundlesController@store')->name('bundles.store');
 });
