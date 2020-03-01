@@ -22,6 +22,9 @@ class CreateServicesTable extends Migration
             $table->integer('servicetype_id');
             $table->float('price', 8, 3);
             $table->float('real_price', 8, 3)->nullable();
+            $table->string('info_label')->nullable()->default('insert info below');
+            $table->string('info_placeholder')->nullable()->default('');
+            $table->boolean('accept_info')->default(true);
             $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();

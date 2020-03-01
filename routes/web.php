@@ -34,5 +34,6 @@ Route::group(['middleware' => ['admin']], function () {
     Route::delete('admin/bundles/{bundle}', 'BundlesController@destroy')->name('bundles.destroy');
     Route::get('admin/bundles/{service}/create', 'BundlesController@create')->name('bundles.create');
     Route::post('admin/bundles/', 'BundlesController@store')->name('bundles.store');
+    Route::get('admin/orders', 'OrdersController@admin_show')->name('orders.admin_show');
 });
 

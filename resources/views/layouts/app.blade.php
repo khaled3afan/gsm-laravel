@@ -84,7 +84,9 @@
                                 <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action">categories</a>    
                                 <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action">users</a>    
                                 <a href="{{ route('servicecodes.index') }}" class="list-group-item list-group-item-action">service codes</a>  
-                                <a href="{{ route('bundles.index') }}" class="list-group-item list-group-item-action">Bundles List</a>    
+                                <a href="{{ route('bundles.index') }}" class="list-group-item list-group-item-action">Bundles List</a>
+                                <a href="{{ route('orders.admin_show') }}" class="list-group-item list-group-item-action">Orders List</a>    
+
 
 
                             </div>

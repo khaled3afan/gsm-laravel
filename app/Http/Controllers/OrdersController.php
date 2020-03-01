@@ -27,6 +27,10 @@ class OrdersController extends Controller
         return view('index.userorderslist', ['orders' => $orders]);
     }
 
+    public function admin_show() {
+        $orders = Order::all();
+        return view('orders.index', ['orders' => $orders]);
+    }
     /**
      * Show the form for creating a new resource.
      *
