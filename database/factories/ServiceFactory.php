@@ -15,6 +15,9 @@ $factory->define(Service::class, function (Faker $faker) {
         'servicetype_id' => $faker->numberBetween(1,2),
         'price'  => $faker->randomFloat(3, 0, 20),
         'real_price' => $faker->randomFloat(3, 0, 29),
+        'accept_info' => true,
+        'info_label' => $faker->sentence(4),
+        'info_placeholder' => $faker->sentence(5),
         'image' => 'servicesimages/gm6mRSXzQt80ezT3oRopKqFLKGacvsNuILJWsn1B.jpeg'
          
     ];

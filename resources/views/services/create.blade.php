@@ -57,6 +57,7 @@
           </select>
         </div>
 
+
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Description</label>
           <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="2">{{ isset($service) ? $service->description : '' }}</textarea>
@@ -74,6 +75,29 @@
           <label for="servicImage">Service Image</label>
           <input name="image" type="file" accept="image/*" class="form-control-file" id="servicImage">
         </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Accept Info</label>
+          <select name="accept_info" class="form-control" id="exampleFormControlSelect1">
+          <option value="0" @if (isset($service) && $service->accept_info == false)
+              selected
+          @endif>NO</option>
+          <option value="1" @if (isset($service) && $service->accept_info == true)
+            selected
+           @endif>YES</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="info_label">Info Label</label>
+          <input id="info_label" class="form-control" type="text" name="info_label" value="{{ $service->info_label ?? '' }}">
+        </div>
+
+        <div class="form-group">
+          <label for="info_placeholder">Info Place Holder</label>
+          <input id="info_placeholder" class="form-control" type="text" name="info_placeholder" value="{{ $service->info_placeholder ?? '' }}">
+        </div>
+
 
         <button class="btn btn-success">add</button>
     </form>

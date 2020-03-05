@@ -16,6 +16,4 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('services', function () {
-    echo 'hello';
-});
+Route::resource('services', 'api\ServicesController');

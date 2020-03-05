@@ -38,11 +38,13 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- right Side Of Navbar -->
-                        <div class="navbar-nav mr-auto">
-                            <a href="/" class="nav-item nav-link">help</a>
+                        <div class="navbar-nav mr-auto align-item-center d-flex">
+                            <a href="/" class="nav-item nav-link">
+                            <i class="fas fa-home"></i> HOME
+                            </a>
                             @if (Auth::check())
                                 @if (Auth::user()->is_admin)
-                            <a href="/admin" class="nav-item nav-link">Admin</a>
+                            <a href="/admin" class="nav-item nav-link"><i class="fas fa-user-shield"></i> DASHBOARD</a>
                                 @endif
                             <a href="" class="nav-item nav-link">
                                 <span class="badge badge-info text-white p-2">

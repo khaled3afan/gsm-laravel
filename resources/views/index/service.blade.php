@@ -46,10 +46,13 @@
             </select>
         </div>
         @endif
+        
+        @isset($service->accept_info)
         <div class="form-group">
-            <label for="info">Insert detailes below</label>
-            <textarea id="info" class="form-control" name="info" rows="2" placeholder="{{ $service->title }}" {{ isset($bundles) ? '' : 'required' }}></textarea>
+            <label for="info">{{ $service->info_label ?? '' }}</label>
+            <textarea id="info" class="form-control" name="info" rows="2" placeholder="{{ $service->info_placeholder ?? '' }}" {{ isset($bundles) ? '' : 'required' }}></textarea>
         </div>
+        @endisset
         <div class="form-group text-center">
             <input type="submit" class="btn btn-success" value="Request Now">
         </div>
