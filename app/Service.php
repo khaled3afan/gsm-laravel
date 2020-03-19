@@ -21,6 +21,9 @@ class Service extends Model
         'image',
         'price',
         'real_price',
+        'accept_info',
+        'info_label',
+        'info_placeholder'
     ];
 
     public function category()

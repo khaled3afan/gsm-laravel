@@ -20,4 +20,10 @@ class IndexController extends Controller
         $service = Service::find($service_id);
         return view('index.service', ['service' => $service]);
     }
+
+    public function show_category($category_id) {
+        $category = Category::find($category_id);
+        $services = Service::where('category_id', $category_id)->get();
+        return view('index.category', ['category' => $category, 'services' => $services]);
+    }
 }

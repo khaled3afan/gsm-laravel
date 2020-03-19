@@ -13,13 +13,15 @@
 
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/service/{service_id}', 'IndexController@show_service')->name('index.service.show');
-
+Route::get('/category/{category_id}', 'IndexController@show_category')->name('index.category');
 Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('home');
 Route::post('/service/{service_id}', 'OrdersController@store')->name('order.store')->middleware('auth');
 Route::get('/orders', 'OrdersController@index')->name('orders.index')->middleware('auth');
 Route::resource('transactions', 'TransactionsController')->middleware('auth');
+Route::get('balance', 'TransactionsController@user_balance')->name('index.balance')->middleware('auth');
+Route::post('balance', 'TransactionsController@add_balance')->name('index.add_balance')->middleware('auth');
 
 Route::group(['middleware' => ['admin']], function () {
     Route::resource('admin/services', 'ServicesController');
@@ -35,5 +37,6 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('admin/bundles/{service}/create', 'BundlesController@create')->name('bundles.create');
     Route::post('admin/bundles/', 'BundlesController@store')->name('bundles.store');
     Route::get('admin/orders', 'OrdersController@admin_show')->name('orders.admin_show');
+    Route::resource('admin/giftcards', 'GiftCardsController');
 });
 

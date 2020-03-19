@@ -85,9 +85,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        Service::where('category_id', $category->id)->update(['category_id' => 1]);
+        $category->delete();
+        session()->flash('success', 'category '. $category->name . ' deleted successfuly');
+        return redirect()->route('categories.index');
     }
     
 }

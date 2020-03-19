@@ -4,9 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ServiceRequest;
-use App\Service;
-class ServicesController extends Controller
+use App\Http\Requests\CategoryRequest;
+use App\Category;
+
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,8 +59,8 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        $res =response()->json($service, 200);
+        $category = Category::find($id);
+        $res =response()->json($category, 200);
         return $res;
     }
 
@@ -70,17 +71,13 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(CategoryRequest $request,Category $category)
     {
-        $request->validated;
-        unset($request['service_id']);
+        $request->validated();
+        unset($request['category_id']);
         $data = $request->all();
-        if(!$data['info_placeholder']){
-            $data['info_placeholder'] = null;
-        }
-        $data['image'] = $service->image;
-        $service->update($data);
-        return response()->json(['success' => 'Service has been updated successfully'], 200);
+        $category->update($data);
+        return response()->json($category, 200);
     }
 
     /**

@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function giftcards()
+    {
+        return $this->hasMany(App\GiftCard::class);
+    }
 }

@@ -13,23 +13,22 @@
           <label for="codes">Codes</label>
           <textarea class="form-control" name="codes" id="codes" rows="6"></textarea>
         </div>
-
-        @isset($bundles)
+        @if (isset($bundles) && count($bundles))
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Bundle Group</label>
                 <select name="bundle_id" class="form-control" id="exampleFormControlSelect1">
+                    <option value="3">he</option>
                     @foreach ($bundles as $bundle)
-                    @if ($bundle->bundletype->name == 'instant')
-                    <option value="{{ $bundle->id }}">{{ $bundle->name }}</option>
-                    @endif
+                        @if ($bundle->bundletype->name == 'instant')
+                            <option value="{{ $bundle->id }}">{{ $bundle->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
-        @endisset
-
+        @endif
         <div class="form-group">
         @isset($service)
-            <input type="hidden" name="service_id" value="{{ $service_id }}">
+            <input type="hidden" name="service_id" value="{{ $service->id }}">
         @endisset   
 
         @isset($bundle)

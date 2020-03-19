@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use App\DataTables\UsersDataTable;
 class UsersController extends Controller
 {
     /**
@@ -12,10 +12,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UsersDataTable $datatable)
     {
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        return $datatable->render('users.index');
     }
 
     /**

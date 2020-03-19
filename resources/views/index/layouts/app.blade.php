@@ -46,9 +46,11 @@
                                 @if (Auth::user()->is_admin)
                             <a href="/admin" class="nav-item nav-link"><i class="fas fa-user-shield"></i> DASHBOARD</a>
                                 @endif
-                            <a href="" class="nav-item nav-link">
+                            <a href="{{ route('index.balance') }}" class="nav-item nav-link">
                                 <span class="badge badge-info text-white p-2">
-                                {{ Auth::user()->wallet->balance }} $
+                                @auth
+                                {{ Auth::user()->wallet->balance }}
+                                @endauth
                                 <i class="fas fa-wallet fa-md"></i>
                                 </span>
                             </a>
@@ -92,7 +94,17 @@
                 </div>
             </nav>
         </div>
-        <div class="container bg-white pt-4">
+        <div class="container bg-white pt-5">
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>

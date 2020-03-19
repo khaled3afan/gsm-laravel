@@ -5,11 +5,15 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-// @import "~rtl-bootstrap/scss/bootstrap";
+// @import '~bootstrap/scss/bootstrap';
+@import "~rtl-bootstrap/scss/bootstrap";
 
 
 $fa-font-path: '../webfonts';
 // Font Awesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
+
+// DataTables
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";

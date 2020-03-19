@@ -27,7 +27,7 @@ class ServicesController extends Controller
     public function index()
     {
         $services = Service::all();
-        return view('services.index', ['services' => $services]);
+        return view('services.index', ['services' => $services], ['categories' => Category::all(), 'servicetypes' => ServiceType::all()]);
     }
 
     /**
@@ -137,11 +137,12 @@ class ServicesController extends Controller
     }
 
     public function serviceType($type) { //display services by type in services.index depending on services/type/{type} route
+        $servicetype = DB::table('service_types')->where(['name' => $type])->first();
         $services = Service::whereHas('servicetype', function(Builder $query) use ($type) {
             $query->where('name', '=', $type);
         })->get();
 
-        return view('services.index', ['services' => $services, 'type' => $type]);
+        return view('services.index', ['services' => $services, 'type' => $type, 'categories' => Category::all(), 'servicetypes' => ServiceType::all(), 'servicetype' => $servicetype]);
 
     }
  

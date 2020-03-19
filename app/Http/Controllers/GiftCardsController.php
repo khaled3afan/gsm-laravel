@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ServiceRequest;
-use App\Service;
-class ServicesController extends Controller
+
+use App\GiftCard;
+
+class GiftCardsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,17 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $giftcards = GiftCard::all();
+        function giftCard($lenght=16) {
+            $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            $res = "";
+            for ($i = 0; $i < $lenght; $i++) {
+                $res .= $chars[mt_rand(0, strlen($chars)-1)];
+            }
+            return $res;
+        }
+        $card_code = giftCard(16);
+        return view('giftcards.index', ['card_code'=> $card_code, 'giftcards' => $giftcards]);
     }
 
     /**
@@ -25,7 +35,7 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,7 +46,8 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        GiftCard::create($request->all());
+        return redirect()->route('giftcards.index');
     }
 
     /**
@@ -58,9 +69,7 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        $res =response()->json($service, 200);
-        return $res;
+        //
     }
 
     /**
@@ -70,17 +79,9 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceRequest $request, Service $service)
+    public function update(Request $request, $id)
     {
-        $request->validated;
-        unset($request['service_id']);
-        $data = $request->all();
-        if(!$data['info_placeholder']){
-            $data['info_placeholder'] = null;
-        }
-        $data['image'] = $service->image;
-        $service->update($data);
-        return response()->json(['success' => 'Service has been updated successfully'], 200);
+        //
     }
 
     /**
@@ -91,6 +92,7 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        GiftCard::find($id)->delete();
+        return redirect()->route('giftcards.index');
     }
 }

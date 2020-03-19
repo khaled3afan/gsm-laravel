@@ -10,15 +10,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    
+    @yield('header')
 
     <!-- Styles -->
     {{-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/my.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -79,37 +83,43 @@
             <div class="row py-4">
                 @if (Auth::check() && Auth::user()->is_admin)
                     
-                    <div class="col col-lg-3 mb-3">
+                    <div class=" col-lg-3 col-md-12 mb-3">
                         <div class="list-group">
-                            <a href="{{ route('home') }}" class="list-group-item list-group-item-action">home</a>    
-                            <a href="{{ route('services.index') }}" class="list-group-item list-group-item-action">services</a>    
-                            <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action">categories</a>    
-                            <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action">users</a>    
-                            <a href="{{ route('servicecodes.index') }}" class="list-group-item list-group-item-action">service codes</a>  
-                            <a href="{{ route('bundles.index') }}" class="list-group-item list-group-item-action">Bundles List</a>
-                            <a href="{{ route('orders.admin_show') }}" class="list-group-item list-group-item-action">Orders List</a>    
+                            <a href="{{ route('home') }}" class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }} list-group-item list-group-item-action">home</a>    
+                            <a href="{{ route('services.index') }}" class="{{ Route::currentRouteName() == 'services.index' ? 'active' : '' }} list-group-item list-group-item-action">services</a>    
+                            <a href="{{ route('categories.index') }}" class="{{ Route::currentRouteName() == 'categories.index' ? 'active' : '' }} list-group-item list-group-item-action">categories</a>    
+                            <a href="{{ route('users.index') }}" class="{{ Route::currentRouteName() == 'users.index' ? 'active' : '' }} list-group-item list-group-item-action">users</a>    
+                            <a href="{{ route('servicecodes.index') }}" class="{{ Route::currentRouteName() == 'servicecodes.index' ? 'active' : '' }} list-group-item list-group-item-action">service codes</a>  
+                            <a href="{{ route('bundles.index') }}" class="{{ Route::currentRouteName() == 'bundles.index' ? 'active' : '' }} list-group-item list-group-item-action">Bundles List</a>
+                            <a href="{{ route('orders.admin_show') }}" class="{{ Route::currentRouteName() == 'orders.admin_show' ? 'active' : '' }} list-group-item list-group-item-action">Orders List</a>    
+                            <a href="{{ route('giftcards.index') }}" class="{{ Route::currentRouteName() == 'giftcards.index' ? 'active' : '' }} list-group-item list-group-item-action">Gift Cards</a>    
+
                             
                             
                             
                         </div>
                     </div>
                 @endif
-                <div class="col">
-                    @if (session()->has('error'))
-                        <div class="alert alert-danger">
-                            {{ session()->get('error') }}
-                        </div>
-                    @endif
-                    @if (session()->has('success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('success') }}
-                        </div>
-                    @endif
-                    @yield('content')
-                </div>
+                    <div class="col col-md-9">
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                        @endif
+                        @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session()->get('success') }}
+                            </div>
+                        @endif
+                        @yield('content')
+                    </div>
             </div>
         </div>
     </div>
-    @yield('js')
+
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

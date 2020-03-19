@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.0.6",
+        "datatables.net-bs4": "^1.10.20",
+        "datatables.net-buttons-bs4": "^1.6.1",
         "popper": "^1.0.1"
     }
 }

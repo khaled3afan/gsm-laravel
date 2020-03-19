@@ -3,7 +3,6 @@
 @section('content')
 
         <div class="table-responsive">
-            <a class="btn btn-success" href="" role="button">add new codes</a>
             <table class="table table-bordered">
                 <thead class="bg-primary text-white">
                     <tr class="text-center">

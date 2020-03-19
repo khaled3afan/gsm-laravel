@@ -11,6 +11,7 @@ use App\Order;
 use App\ServiceCode;
 use App\Bundle;
 use App\Transaction;
+use App\DataTables\OrdersDataTable;
 class OrdersController extends Controller
 {
     /**
@@ -27,9 +28,10 @@ class OrdersController extends Controller
         return view('index.userorderslist', ['orders' => $orders]);
     }
 
-    public function admin_show() {
-        $orders = Order::all();
-        return view('orders.index', ['orders' => $orders]);
+    public function admin_show(OrdersDataTable $datatable) {
+        return $datatable->render('orders.index');
+        // $orders = Order::all();
+        // return view('orders.index', ['orders' => $orders]);
     }
     /**
      * Show the form for creating a new resource.
@@ -65,7 +67,7 @@ class OrdersController extends Controller
             $bundle_price = $bundle->price;
             if ($bundle_price > $user_balance) { // check user balance if is lower than bundle price
                 session()->flash('error', 'you don\'t have money to do this operator');
-                return redirect()->route('home');
+                return redirect()->route('index.service.show', $service_id);
             }
             if ($bundle->bundletype->name != 'instant') { // if the service ordered is a bundle but not instant type do the code below
                 return 'this bundle is not instant';
@@ -102,7 +104,7 @@ class OrdersController extends Controller
         elseif($order_info){ // if order type is delay and not a bundle
             if ($service_price > $user_balance) { // check user balance if is lower than bundle price
                 session()->flash('error', 'you don\'t have money to do this operator');
-                return redirect()->route('home');
+                return redirect()->route('index.service.show', $service_id);
             }
             $order['title'] = $service->title;
             $order['price'] = $service_price;
@@ -115,6 +117,8 @@ class OrdersController extends Controller
             $wallet->save();
             $wallet->transactions()->save($transaction);
             Order::create($order)->services()->attach($service_id);
+            session()->flash('success', 'your order is successfully');
+            return redirect()->route('orders.index');
         }
         else{ //request is not valid
             echo 'hello';
