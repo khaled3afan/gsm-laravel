@@ -23,6 +23,7 @@
             "require": {
                 "illuminate/filesystem": "^5.5|^6|^7",
                 "illuminate/support": "^5.5|^6|^7",
+                "symfony/http-foundation": "4.4.7"
                 "knplabs/knp-snappy": "^1",
                 "php": ">=7"
             },
